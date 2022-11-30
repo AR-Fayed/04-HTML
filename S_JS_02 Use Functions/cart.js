@@ -62,8 +62,8 @@ const renderHTML = () => {
   });
   document.getElementById("sub-total").innerHTML = `$${getSubTotal()}`;
   document.getElementById("shipping").innerHTML = `$${getShipping()}`;
-  document.getElementById("total").innerHTML = `$${getTotal()}`
-  localStorage.setItem("products",JSON.stringify(products));
+  document.getElementById("total").innerHTML = `$${getTotal()}`;
+  
 };
 
 const getSubTotal = () => {
@@ -78,14 +78,17 @@ const getTotal = () => getShipping() + getSubTotal();
 
 const decQuantity = (i) => {
   if (products[i].quantity > 1) products[i].quantity--;
+  localStorage.setItem("products",JSON.stringify(products));
   renderHTML();
 };
 const incQuantity = (i) => {
   products[i].quantity++;
+  localStorage.setItem("products",JSON.stringify(products));
   renderHTML();
 };
 const remove = (i) => {
   products.splice(i, 1);
+  localStorage.setItem("products",JSON.stringify(products));
   renderHTML();
 };
 
