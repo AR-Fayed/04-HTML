@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+        <div style="display: inline-flex; gap: 25px">
+          <span>First Name</span>
+          <ng-container *ngIf="registerForm.controls['first_name']?.touched"
+            ><span
+              *ngIf="registerForm.controls['first_name'].errors"
+              class="text-danger"
+              >(Enter a valid name)</span
+            ></ng-container
+          >
+        </div>
+        <input class="form-control" formControlName="first_name" />
+
+        <div style="display: inline-flex; gap: 25px">
+          <span>Last Name</span>
+          <ng-container *ngIf="registerForm.controls['last_name']?.touched">
+            <span
+              *ngIf="registerForm.controls['last_name'].errors"
+              class="text-danger"
+              >(Enter a valid name)</span
+            ></ng-container>
+        </div>
+        <input class="form-control"  formControlName="last_name" />
+
+        <div style="display: inline-flex; gap: 25px">
+          <span>E-mail</span>
+          <ng-container *ngIf="registerForm.controls['email']?.touched">
+            <span
+              *ngIf="registerForm.controls['email'].errors"
+              class="text-danger"
+              >(Enter a valid E-mail)</span
+            ></ng-container>
+        </div>
+        <input class="form-control"  formControlName="email" />
+
+        <div style="display: inline-flex; gap: 25px">
+          <span>Password</span>
+          <ng-container *ngIf="registerForm.controls['password']?.touched">
+            <span
+              *ngIf="registerForm.controls['password'].errors"
+              class="text-danger"
+              >(Minimum 6 characters)</span
+            ></ng-container>
+        </div>
+        <input
+          class="form-control"
+          type="password"
+          formControlName="password"
+        />
+
+        <div style="display: inline-flex; gap: 25px">
+          <span>Confirm password</span>
+          <ng-container
+            *ngIf="registerForm.controls['password_confirm']?.touched"
+            ><span
+              *ngIf="registerForm.controls['password_confirm'].errors"
+              class="text-danger"
+              >(Passwords do not match)</span
+            >
+          </ng-container>
+        </div>
+        <input
+          class="form-control"
+          type="password"
+          formControlName="password_confirm"
+        />
+
+        <button class="btn btn-success btn-block" [disabled]="!registerForm.valid">register</button>
+      </form>
+    </div>
+  </div>
+</div>

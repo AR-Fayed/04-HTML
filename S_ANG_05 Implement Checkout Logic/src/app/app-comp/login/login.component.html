@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <input
+          class="form-control"
+          placeholder="Username"
+          formControlName="email"
+        />
+        <ng-container *ngIf="loginForm.controls['email']?.touched">
+          <span
+            class="text-danger"
+            *ngIf="loginForm.controls['email']?.errors?.['required']"
+            >Username is required</span
+          >
+          <span
+            class="text-danger"
+            *ngIf="loginForm.controls['email']?.errors?.['email']"
+            >Please enter a valid username</span
+          >
+        </ng-container>
+
+        <input
+          class="form-control"
+          type="password"
+          placeholder="Password"
+          formControlName="password"/>
+
+        <ng-container *ngIf="loginForm.controls['password']?.touched">
+          <span
+            class="text-danger"
+            *ngIf="loginForm.controls['password']?.errors?.['required']"
+            >Password is required</span
+          >
+          <span
+            class="text-danger"
+            *ngIf="loginForm.controls['password']?.errors?.['password']"
+            >Please enter a valid password</span>
+        </ng-container>
+
+        <button class="btn btn-success btn-block" type="submit">Login</button>
+        <button
+          class="btn btn-success btn-block"
+          style="background-color: rgb(201, 200, 200); border: 0px"
+          (click)="register()"
+        >
+          register
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

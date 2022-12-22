@@ -1,0 +1,17 @@
+<nav>
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [ngClass]="{'disabled' : 1 > currentPage}">
+      <a class="page-link" (click)="changePage(currentPage-1)">Previous</a>
+    </li>
+
+    <li
+      *ngFor="let item of [].constructor(getPageCount()); let i = index"
+      class="page-item active"
+      [ngClass]="{ active: i == currentPage }"
+    >
+      <a class="page-link" (click)="changePage(i)">{{ i + 1 }}</a>
+    </li>
+
+    <li class="page-item" [ngClass]="{'disabled' : currentPage >= getPageCount()-1}"><a class="page-link"(click)="changePage(currentPage+1)" >Next</a></li>
+  </ul>
+</nav>
