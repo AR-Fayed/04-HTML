@@ -245,49 +245,19 @@
           <?php
             $featuredProducts =
               [
-                [
-                  'id' => 1,
-                  'name' => 'Camera',
-                  'image' => 'img/product-1.jpg'
-                ],
-                [
-                  'id' => 2,
-                  'name' => 'T-shirt',
-                  'image' => 'img/product-2.jpg'
-                ],
-                [
-                  'id' => 3,
-                  'name' => 'Lamp',
-                  'image' => 'img/product-3.jpg'
-                ],
-                [
-                  'id' => 4,
-                  'name' => 'Sneakers',
-                  'image' => 'img/product-4.jpg'
-                ],
-                [
-                  'id' => 5,
-                  'name' => 'Drone',
-                  'image' => 'img/product-5.jpg'
-                ],
-                [
-                  'id' => 6,
-                  'name' => 'Watch',
-                  'image' => 'img/product-6.jpg'
-                ],
-                [
-                  'id' => 7,
-                  'name' => 'Designer shirt',
-                  'image' => 'img/product-7.jpg'
-                ],
-                [
-                  'id' => 8,
-                  'name' => 'Skincare',
-                  'image' => 'img/product-8.jpg'
-                ]
+                ['id' => 1,'name' => 'Camera','price'=>100,'discount'=>0.1,'rating'=>5,'rating_count'=>100,'is_featured'=>true,'image' => 'img/product-1.jpg','recent_products'=>true],
+                ['id' => 2,'name' => 'T-shirt','price'=>110,'discount'=>0,'rating'=>5,'rating_count'=>84,'is_featured'=>true,'image' => 'img/product-2.jpg','recent_products'=>true],
+                ['id' => 3,'name' => 'Lamp','price'=>90,'discount'=>0.15,'rating'=>5,'rating_count'=>73,'is_featured'=>false,'image' => 'img/product-3.jpg','recent_products'=>true],
+                ['id' => 4,'name' => 'Sneakers','price'=>95,'discount'=>0,'rating'=>5,'rating_count'=>47,'is_featured'=>true,'image' => 'img/product-4.jpg','recent_products'=>true],
+                ['id' => 5,'name' => 'Drone','price'=>120,'discount'=>0.15,'rating'=>5,'rating_count'=>12,'is_featured'=>true,'image' => 'img/product-5.jpg','recent_products'=>false],
+                ['id' => 6,'name' => 'Watch','price'=>250,'discount'=>0.2,'rating'=>5,'rating_count'=>123,'is_featured'=>false,'image' => 'img/product-6.jpg','recent_products'=>false],
+                ['id' => 7,'name' => 'Designer shirt','price'=>500,'discount'=>0,'rating'=>5,'rating_count'=>56,'is_featured'=>true,'image' => 'img/product-7.jpg','recent_products'=>false],
+                ['id' => 8,'name' => 'SkinCare','price'=>150,'discount'=>0.3,'rating'=>5,'rating_count'=>100,'is_featured'=>true,'image' => 'img/product-8.jpg','recent_products'=>false],
+
               ];
 
               foreach($featuredProducts as $product){
+                if($product['is_featured']== true)
           ?>
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
           <div class="product-item bg-light mb-4">
@@ -318,18 +288,18 @@
               <div
                 class="d-flex align-items-center justify-content-center mt-2"
               >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                <h5>$<?= $product['price'] ?></h5>
+                <h6 class="text-muted ml-2"><del>$<?= $product['price']+($product['price']*$product['discount']) ?></del></h6>
               </div>
               <div
                 class="d-flex align-items-center justify-content-center mb-1"
               >
+                <!-- stars loop -->
                 <small class="fa fa-star text-primary mr-1"></small>
                 <small class="fa fa-star text-primary mr-1"></small>
                 <small class="fa fa-star text-primary mr-1"></small>
                 <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small>(99)</small>
+                <small><?= $product['rating_count'] ?></small>
               </div>
             </div>
           </div>
