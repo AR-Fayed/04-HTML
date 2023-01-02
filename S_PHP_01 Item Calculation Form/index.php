@@ -246,18 +246,18 @@
             $featuredProducts =
               [
                 ['id' => 1,'name' => 'Camera','price'=>100,'discount'=>0.1,'rating'=>5,'rating_count'=>100,'is_featured'=>true,'image' => 'img/product-1.jpg','recent_products'=>true],
-                ['id' => 2,'name' => 'T-shirt','price'=>110,'discount'=>0,'rating'=>5,'rating_count'=>84,'is_featured'=>true,'image' => 'img/product-2.jpg','recent_products'=>true],
-                ['id' => 3,'name' => 'Lamp','price'=>90,'discount'=>0.15,'rating'=>5,'rating_count'=>73,'is_featured'=>false,'image' => 'img/product-3.jpg','recent_products'=>true],
-                ['id' => 4,'name' => 'Sneakers','price'=>95,'discount'=>0,'rating'=>5,'rating_count'=>47,'is_featured'=>true,'image' => 'img/product-4.jpg','recent_products'=>true],
-                ['id' => 5,'name' => 'Drone','price'=>120,'discount'=>0.15,'rating'=>5,'rating_count'=>12,'is_featured'=>true,'image' => 'img/product-5.jpg','recent_products'=>false],
-                ['id' => 6,'name' => 'Watch','price'=>250,'discount'=>0.2,'rating'=>5,'rating_count'=>123,'is_featured'=>false,'image' => 'img/product-6.jpg','recent_products'=>false],
+                ['id' => 2,'name' => 'T-shirt','price'=>110,'discount'=>0,'rating'=>4,'rating_count'=>84,'is_featured'=>true,'image' => 'img/product-2.jpg','recent_products'=>true],
+                ['id' => 3,'name' => 'Lamp','price'=>90,'discount'=>0.15,'rating'=>3.5,'rating_count'=>73,'is_featured'=>false,'image' => 'img/product-3.jpg','recent_products'=>true],
+                ['id' => 4,'name' => 'Sneakers','price'=>95,'discount'=>0,'rating'=>4.5,'rating_count'=>47,'is_featured'=>true,'image' => 'img/product-4.jpg','recent_products'=>true],
+                ['id' => 5,'name' => 'Drone','price'=>120,'discount'=>0.15,'rating'=>2.5,'rating_count'=>12,'is_featured'=>true,'image' => 'img/product-5.jpg','recent_products'=>false],
+                ['id' => 6,'name' => 'Watch','price'=>250,'discount'=>0.2,'rating'=>3,'rating_count'=>123,'is_featured'=>false,'image' => 'img/product-6.jpg','recent_products'=>false],
                 ['id' => 7,'name' => 'Designer shirt','price'=>500,'discount'=>0,'rating'=>5,'rating_count'=>56,'is_featured'=>true,'image' => 'img/product-7.jpg','recent_products'=>false],
                 ['id' => 8,'name' => 'SkinCare','price'=>150,'discount'=>0.3,'rating'=>5,'rating_count'=>100,'is_featured'=>true,'image' => 'img/product-8.jpg','recent_products'=>false],
 
               ];
 
               foreach($featuredProducts as $product){
-                if($product['is_featured']== true)
+                if($product['is_featured']==true){
           ?>
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
           <div class="product-item bg-light mb-4">
@@ -292,13 +292,28 @@
                 <h6 class="text-muted ml-2"><del>$<?= $product['price']+($product['price']*$product['discount']) ?></del></h6>
               </div>
               <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <!-- stars loop -->
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
+                class="d-flex align-items-center justify-content-center mb-1">
+                <?php
+                  $stars=[1,2,3,4,5];
+                  for ($i=0; $i<=4; $i++){
+                    if($stars[$i] <= $product['rating'])
+                        echo
+                        "<div class='d-flex align-items-center justify-content-center mb-1'>
+                          <small class='fa fa-star text-primary mr-1'></small>
+                        </div>";
+                    else if($stars[$i] <= ($product['rating']+ 0.5))
+                        echo
+                        "<div class='d-flex align-items-center justify-content-center mb-1'>
+                          <small class='fa fa-star-half-alt text-primary mr-1'></small>
+                        </div>";
+                        
+                    else
+                        echo
+                        "<div class='d-flex align-items-center justify-content-center mb-1'>
+                          <small class='far fa-star text-primary mr-1'></small>
+                        </div>";
+                  }
+                  ?>
                 <small><?= $product['rating_count'] ?></small>
               </div>
             </div>
@@ -307,6 +322,8 @@
        
           <?php
             }
+            else '';
+          }
           ?>
       </div>   
     </div>
@@ -339,351 +356,98 @@
     </div>
     <!-- Offer End -->
 
-    <!-- Products Start -->
+    <!-- Recent Products Start -->
     <div class="container-fluid pt-5 pb-3">
       <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4">
         <span class="bg-secondary pr-3">Recent Products</span>
       </h2>
       <div class="row px-xl-5">
+          <?php
+            $featuredProducts =
+              [
+                ['id' => 1,'name' => 'Camera','price'=>100,'discount'=>0.1,'rating'=>5,'rating_count'=>100,'is_featured'=>true,'image' => 'img/product-1.jpg','recent_products'=>true],
+                ['id' => 2,'name' => 'T-shirt','price'=>110,'discount'=>0,'rating'=>4,'rating_count'=>84,'is_featured'=>true,'image' => 'img/product-2.jpg','recent_products'=>true],
+                ['id' => 3,'name' => 'Lamp','price'=>90,'discount'=>0.15,'rating'=>3.5,'rating_count'=>73,'is_featured'=>false,'image' => 'img/product-3.jpg','recent_products'=>true],
+                ['id' => 4,'name' => 'Sneakers','price'=>95,'discount'=>0,'rating'=>4.5,'rating_count'=>47,'is_featured'=>true,'image' => 'img/product-4.jpg','recent_products'=>true],
+                ['id' => 5,'name' => 'Drone','price'=>120,'discount'=>0.15,'rating'=>2.5,'rating_count'=>12,'is_featured'=>true,'image' => 'img/product-5.jpg','recent_products'=>false],
+                ['id' => 6,'name' => 'Watch','price'=>250,'discount'=>0.2,'rating'=>3,'rating_count'=>123,'is_featured'=>false,'image' => 'img/product-6.jpg','recent_products'=>true],
+                ['id' => 7,'name' => 'Designer shirt','price'=>500,'discount'=>0,'rating'=>5,'rating_count'=>56,'is_featured'=>true,'image' => 'img/product-7.jpg','recent_products'=>false],
+                ['id' => 8,'name' => 'SkinCare','price'=>150,'discount'=>0.3,'rating'=>5,'rating_count'=>100,'is_featured'=>true,'image' => 'img/product-8.jpg','recent_products'=>false],
+
+              ];
+
+              foreach($featuredProducts as $product){
+                if($product['recent_products']== true){
+          ?>
         <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
           <div class="product-item bg-light mb-4">
             <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-1.jpg" alt="" />
+              <img class="img-fluid w-100" src=<?= $product['image'] ?> alt="" />
               <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a
+                  class="btn btn-outline-dark btn-square"
+                  href="#"
+                  onclick="addSingleProductToCart({id:1,name:'product-1',price:123,image:'/img/product-1.jpg'})"
                   ><i class="fa fa-shopping-cart"></i
                 ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a class="btn btn-outline-dark btn-square" href="#"
                   ><i class="far fa-heart"></i
                 ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a class="btn btn-outline-dark btn-square" href="#"
                   ><i class="fa fa-sync-alt"></i
                 ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
+                <a class="btn btn-outline-dark btn-square" href="#"
                   ><i class="fa fa-search"></i
                 ></a>
               </div>
             </div>
             <div class="text-center py-4">
               <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
+                ><?= $product['name'] ?></a
               >
               <div
                 class="d-flex align-items-center justify-content-center mt-2"
               >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                <h5>$<?= $product['price'] ?></h5>
+                <h6 class="text-muted ml-2"><del>$<?= $product['price']+($product['price']*$product['discount']) ?></del></h6>
               </div>
               <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small>(99)</small>
+                class="d-flex align-items-center justify-content-center mb-1">
+                <?php
+                  $stars=[1,2,3,4,5];
+                  for ($i=0; $i<=4; $i++){
+                    if($stars[$i] <= $product['rating'])
+                        echo
+                        "<div class='d-flex align-items-center justify-content-center mb-1'>
+                          <small class='fa fa-star text-primary mr-1'></small>
+                        </div>";
+                    else if($stars[$i] <= ($product['rating']+ 0.5))
+                        echo
+                        "<div class='d-flex align-items-center justify-content-center mb-1'>
+                          <small class='fa fa-star-half-alt text-primary mr-1'></small>
+                        </div>";
+                        
+                    else
+                        echo
+                        "<div class='d-flex align-items-center justify-content-center mb-1'>
+                          <small class='far fa-star text-primary mr-1'></small>
+                        </div>";
+                  }
+                  ?>
+                <small><?= $product['rating_count'] ?></small>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-          <div class="product-item bg-light mb-4">
-            <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-2.jpg" alt="" />
-              <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
-            </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-          <div class="product-item bg-light mb-4">
-            <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-3.jpg" alt="" />
-              <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
-            </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                <small class="far fa-star text-primary mr-1"></small>
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-          <div class="product-item bg-light mb-4">
-            <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-4.jpg" alt="" />
-              <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
-            </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="far fa-star text-primary mr-1"></small>
-                <small class="far fa-star text-primary mr-1"></small>
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-          <div class="product-item bg-light mb-4">
-            <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-5.jpg" alt="" />
-              <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
-            </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-          <div class="product-item bg-light mb-4">
-            <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-6.jpg" alt="" />
-              <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
-            </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-          <div class="product-item bg-light mb-4">
-            <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-7.jpg" alt="" />
-              <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
-            </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star-half-alt text-primary mr-1"></small>
-                <small class="far fa-star text-primary mr-1"></small>
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-          <div class="product-item bg-light mb-4">
-            <div class="product-img position-relative overflow-hidden">
-              <img class="img-fluid w-100" src="img/product-8.jpg" alt="" />
-              <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-shopping-cart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="far fa-heart"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-sync-alt"></i
-                ></a>
-                <a class="btn btn-outline-dark btn-square" href=""
-                  ><i class="fa fa-search"></i
-                ></a>
-              </div>
-            </div>
-            <div class="text-center py-4">
-              <a class="h6 text-decoration-none text-truncate" href=""
-                >Product Name Goes Here</a
-              >
-              <div
-                class="d-flex align-items-center justify-content-center mt-2"
-              >
-                <h5>$123.00</h5>
-                <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-              </div>
-              <div
-                class="d-flex align-items-center justify-content-center mb-1"
-              >
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="fa fa-star text-primary mr-1"></small>
-                <small class="far fa-star text-primary mr-1"></small>
-                <small class="far fa-star text-primary mr-1"></small>
-                <small>(99)</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+       
+          <?php
+            }
+            else '';
+          }
+          ?>
+      </div>   
     </div>
-    <!-- Products End -->
+    <!-- Recent Products End -->
 
     <!-- Vendor Start -->
     <div class="container-fluid py-5">
