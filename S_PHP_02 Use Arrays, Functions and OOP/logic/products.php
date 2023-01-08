@@ -1,5 +1,5 @@
 <?php
-require_once('../dal/dal.php');
+require_once(BASE_PATH.'/dal/dal.php');
 function getProducts()
     {
     $query = "SELECT p.*,c.name category_name,s.name size_name,cl.name color_name FROM

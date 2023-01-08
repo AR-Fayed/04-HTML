@@ -1,4 +1,5 @@
 <?php
+define('BASE_PATH', '../');
 require_once('../layouts/header.php');
 require_once('../logic/products.php');
 $products = getProducts();

@@ -1,5 +1,5 @@
 <?php
-require_once("../logic/categories.php");
+require_once(BASE_PATH."logic/categories.php");
 $categories = getCategories();
 ?>
 
